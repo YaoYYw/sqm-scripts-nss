@@ -47,8 +47,10 @@ fi
 
 # Maximum queue depth in milliseconds. Used with speed and MTU to auto-calculate
 # the fq_codel packet limit when not set by the user.
-# 30ms limits initial bloat while giving CoDel ~494 packets at 200 Mbps/MTU 1518.
-MAXQLIMIT_MS=30
+# 15ms compensates for NSS firmware buffering ~2× the configured limit,
+# yielding ~30ms effective queue depth. At 285 Mbps/MTU 1536 this gives
+# limit=347p, well above MINLIMIT.
+MAXQLIMIT_MS=15
 
 # Floor for auto-calculated queue limit. CoDel needs enough packets to measure;
 # 200 is the minimum for reliable operation.
