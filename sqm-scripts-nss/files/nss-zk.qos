@@ -2,7 +2,7 @@
 # shellcheck disable=2086,3010,1091,3043,2034
 ###############################################################################
 # nss-zk.qos -- HW-accelerated SQM for Qualcomm NSS (IPQ807x)
-# version 20260216
+# version 20260320
 #
 # Flat qdisc hierarchy: nsstbl (shaper) -> nssfq_codel (AQM), per direction.
 # All packet scheduling is offloaded to the NSS co-processor (accel_mode 0).
@@ -201,8 +201,8 @@ add_nssfq_codel() {
 	case "$opts" in
 	*interval*) ;;
 	*)
-		opts="interval 100ms ${opts}"
-		sqm_debug "add_nssfq_codel: no interval specified, defaulting to 100ms"
+		opts="interval 30ms ${opts}"
+		sqm_debug "add_nssfq_codel: no interval specified, defaulting to 30ms"
 		;;
 	esac
 
